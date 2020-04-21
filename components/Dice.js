@@ -5,10 +5,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 function ThrowDice(props) {
     const number = props.number;
     const size = props.size;
+    const modifier = props.modifier;
     let result = 0;
     for (let index = 0; index < number; index++) {
         result += Math.floor(Math.random() * size) + 1;
     };
+    result += modifier;
     alert(result);
 }
 
@@ -38,15 +40,18 @@ function DieIcon(props) {
     };
 }
 
-export function Die({ size, number }) {
+export function Die(props) {
+    const size = props.size;
+    const number = props.diceCount;
+    const modifier = props.modifier;
     return(
         <View>
         <TouchableOpacity
-            onPress={() => ThrowDice({size, number})}
+            onPress={() => ThrowDice({size, number, modifier})}
             style={styles.container}
         >
             <DieIcon size={size} />
-            <Text style={styles.txt}>Roll {number}d{size}</Text>
+            <Text style={styles.txt}>Roll d{size}</Text>
         </TouchableOpacity>
         </View>
     );
