@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import { Die } from '../components/Dice';
 import { DiceCountSelector, ModifierSelector } from '../components/Selectors';
 
-export function HomeScreen() {
+export function DiceScreen() {
     const [diceCount, setDiceCount] = useState(1);
     const [modifier, setModifier] = useState(0);
     return (

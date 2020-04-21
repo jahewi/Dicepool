@@ -1,18 +1,10 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-import { HomeScreen } from './screens/HomeScreen';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { DiceScreen } from './screens/DiceScreen';
+import { DevScreen } from './screens/DevScreen';
 
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -24,16 +16,16 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'Dice') {
               iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+                ? 'dice-d20'
+                : 'dice-d20';
+            } else if (route.name === 'Dev') {
+              iconName = focused ? 'format-list-bulleted' : 'format-list-bulleted';
             }
 
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
@@ -41,8 +33,8 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Dice" component={DiceScreen} />
+        <Tab.Screen name="Dev" component={DevScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
