@@ -1,18 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-function ThrowDice(props) {
-    const number = props.number;
-    const size = props.size;
-    const modifier = props.modifier;
-    let result = 0;
-    for (let index = 0; index < number; index++) {
-        result += Math.floor(Math.random() * size) + 1;
-    };
-    result += modifier;
-    alert(result);
-}
 
 function DieIcon(props) {
     const size = props.size;
@@ -40,6 +29,20 @@ function DieIcon(props) {
     };
 }
 
+
+function ThrowDice(props) {
+    const number = props.number;
+    const size = props.size;
+    const modifier = props.modifier;
+    let result = 0;
+    for (let index = 0; index < number; index++) {
+        result += Math.floor(Math.random() * size) + 1;
+    };
+    result += modifier;
+    alert(result);
+}
+
+
 export function Die(props) {
     const size = props.size;
     const number = props.diceCount;
@@ -56,6 +59,7 @@ export function Die(props) {
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {

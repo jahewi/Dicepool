@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
+
 
 function Bullet(props) {
     return (
         <Text>{'\u2022'} {props.msg}{"\n"}</Text>
     );
 }
+
 
 export function DevScreen() {
     return(
@@ -28,6 +30,7 @@ export function DevScreen() {
         </SafeAreaView>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {

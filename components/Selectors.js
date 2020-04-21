@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 export function DiceCountSelector(props) {
     return(
@@ -22,6 +23,7 @@ export function DiceCountSelector(props) {
         </View>
     );
 }
+
 
 export function ModifierSelector(props) {
     return(

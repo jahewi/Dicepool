@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, View, SafeAreaView, ScrollView } from 'react-native';
 import { Die } from '../components/Dice';
 import { DiceCountSelector, ModifierSelector } from '../components/Selectors';
+
 
 export function DiceScreen() {
     const [diceCount, setDiceCount] = useState(1);
@@ -26,6 +27,7 @@ export function DiceScreen() {
     );
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#fbfbfb',
-        paddingVertical: 20,
+        paddingVertical: 10,
         flexDirection: 'row',
         justifyContent: 'space-evenly'
       }   
