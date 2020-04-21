@@ -1,27 +1,37 @@
 import * as React from 'react';
-import { Image,  StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+function ThrowDice(props) {
+    const number = props.number;
+    const size = props.size;
+    let result = 0;
+    for (let index = 0; index < number; index++) {
+        result += Math.floor(Math.random() * size) + 1;
+    };
+    alert(result);
+}
 
 function DieIcon(props) {
-    const size = props.d;
+    const size = props.size;
     const iconsize = 40;
     switch (size) {
-        case '100':
+        case 100:
             return <Text style={styles.icon}>
                     <MaterialCommunityIcons name='dice-d10' size={0.8*iconsize} />
                     <MaterialCommunityIcons name='dice-d10' size={0.8*iconsize} />
                 </Text>
-        case '20':
+        case 20:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d20' size={iconsize} /></Text>
-        case '12':
+        case 12:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d12' size={iconsize} /></Text>
-        case '10':
+        case 10:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d10' size={iconsize} /></Text>
-        case '8':
+        case 8:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d8' size={iconsize} /></Text>
-        case '4':
+        case 4:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d4' size={iconsize} /></Text>
-        case '2':
+        case 2:
             return <Text style={styles.icon}><MaterialCommunityIcons name='coin' size={iconsize} /></Text>
         default:
             return <Text style={styles.icon}><MaterialCommunityIcons name='dice-d6' size={iconsize} /></Text>
@@ -32,10 +42,10 @@ export function Die({ size, number }) {
     return(
         <View>
         <TouchableOpacity
-            onPress={() => alert("Rolled!")}
+            onPress={() => ThrowDice({size, number})}
             style={styles.container}
         >
-            <DieIcon d={size} />
+            <DieIcon size={size} />
             <Text style={styles.txt}>Roll {number}d{size}</Text>
         </TouchableOpacity>
         </View>
