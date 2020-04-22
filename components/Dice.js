@@ -34,12 +34,20 @@ function ThrowDice(props) {
     const number = props.number;
     const size = props.size;
     const modifier = props.modifier;
+    let roll = 0;
+    let rolls = [];
     let result = 0;
+    // Roll the dice
     for (let index = 0; index < number; index++) {
-        result += Math.floor(Math.random() * size) + 1;
+        roll = Math.floor(Math.random() * size) + 1;
+        rolls.push(roll);
+        result += roll;
     };
+    // Add the modifier
+    rolls.push(modifier);
     result += modifier;
-    alert(result);
+    props.setRoll(rolls);
+    props.setSum(result);
 }
 
 
@@ -47,10 +55,12 @@ export function Die(props) {
     const size = props.size;
     const number = props.diceCount;
     const modifier = props.modifier;
+    const setRoll = props.setRoll;
+    const setSum = props.setSum;
     return(
         <View>
         <TouchableOpacity
-            onPress={() => ThrowDice({size, number, modifier})}
+            onPress={() => ThrowDice({size, number, modifier, setRoll, setSum})}
             style={styles.container}
         >
             <DieIcon size={size} />

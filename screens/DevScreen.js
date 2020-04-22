@@ -17,8 +17,6 @@ export function DevScreen() {
                 <Text style={styles.body}>
                     <Bullet msg="Savable user made roll combinations" />
                     <Bullet msg="User can make collections (characters) that include these roll combinations (actions)" />
-                    <Bullet msg="Report result with modal instead of alert()" />
-                    <Bullet msg="Report individual die rolls" />
                     <Bullet msg="Advantage / Disadvantage selector" />
                     <Bullet msg="Keep a log of recent rolls" />
                     <Bullet msg="Add ads" />
