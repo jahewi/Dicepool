@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView, ScrollView } from 'react-native';
 import { Die } from '../components/Dice';
-import { DiceCountSelector, ModifierSelector } from '../components/Selectors';
+import { Selector } from '../components/Selectors';
 
 
 export function DiceScreen() {
@@ -20,8 +20,8 @@ export function DiceScreen() {
                 <Die size={2} diceCount={diceCount} modifier={modifier} />
             </ScrollView>
             <View style={styles.tabBarInfoContainer}>
-                <DiceCountSelector diceCount={diceCount} setDiceCount={setDiceCount} />
-                <ModifierSelector modifier={modifier} setModifier={setModifier} />
+                <Selector txt={"Number of dice:"} selectValue={diceCount} selectSetter={setDiceCount}/>
+                <Selector txt={"Modifier:"} selectValue={modifier} selectSetter={setModifier}/>
             </View>
         </SafeAreaView>
     );

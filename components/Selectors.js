@@ -3,41 +3,19 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-export function DiceCountSelector(props) {
+export function Selector(props) {
     return(
         <View>
-            <Text>Number of dice: </Text>
+            <Text>{props.txt}</Text>
             <View style={styles.selector}>
                 <TouchableOpacity
-                    onPress={() => props.setDiceCount(props.diceCount-1)}
+                    onPress={() => props.selectSetter(props.selectValue-1)}
                 >
                     <MaterialCommunityIcons name='minus' size={25} />
                 </TouchableOpacity>
-                <Text style={styles.selectorText}>{props.diceCount}</Text>
+                <Text style={styles.selectorText}>{props.selectValue}</Text>
                 <TouchableOpacity
-                    onPress={() => props.setDiceCount(props.diceCount+1)}
-                >
-                    <MaterialCommunityIcons name='plus' size={25} />
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
-}
-
-
-export function ModifierSelector(props) {
-    return(
-        <View style={styles.container}>
-            <Text>Modifier: </Text>
-            <View style={styles.selector}>
-                <TouchableOpacity
-                    onPress={() => props.setModifier(props.modifier-1)}
-                >
-                    <MaterialCommunityIcons name='minus' size={25} />
-                </TouchableOpacity>
-                <Text style={styles.selectorText}>{props.modifier}</Text>
-                <TouchableOpacity
-                    onPress={() => props.setModifier(props.modifier+1)}
+                    onPress={() => props.selectSetter(props.selectValue+1)}
                 >
                     <MaterialCommunityIcons name='plus' size={25} />
                 </TouchableOpacity>
