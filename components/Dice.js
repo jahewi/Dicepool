@@ -34,12 +34,29 @@ function ThrowDice(props) {
     const number = props.number;
     const size = props.size;
     const modifier = props.modifier;
+    const advantage = props.advantage;
     let roll = 0;
+    let roll2 = 0;
     let rolls = [];
     let result = 0;
     // Roll the dice
     for (let index = 0; index < number; index++) {
         roll = Math.floor(Math.random() * size) + 1;
+        console.log(roll);
+        // Reporting of advantage/disadvantage not-used dice not implemented
+        if (advantage == 1) {
+            roll2 = Math.floor(Math.random() * size) + 1;
+            console.log("Adv die: ", roll2);
+            if (roll2 > roll) {
+                roll = roll2;
+            };
+        } else if (advantage == -1) {
+            roll2 = Math.floor(Math.random() * size) + 1;
+            console.log("Disadv die: ", roll2);
+            if (roll2 < roll) {
+                roll = roll2;
+            };
+        }
         rolls.push(roll);
         result += roll;
     };
@@ -55,12 +72,13 @@ export function Die(props) {
     const size = props.size;
     const number = props.diceCount;
     const modifier = props.modifier;
+    const advantage = props.advantage;
     const setRoll = props.setRoll;
     const setSum = props.setSum;
     return(
         <View>
         <TouchableOpacity
-            onPress={() => ThrowDice({size, number, modifier, setRoll, setSum})}
+            onPress={() => ThrowDice({size, number, modifier, advantage, setRoll, setSum})}
             style={styles.container}
         >
             <DieIcon size={size} />

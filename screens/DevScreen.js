@@ -19,6 +19,7 @@ export function DevScreen() {
                     <Bullet msg="User can make collections (characters) that include these roll combinations (actions)" />
                     <Bullet msg="Advantage / Disadvantage selector" />
                     <Bullet msg="Keep a log of recent rolls" />
+                    <Bullet msg="Report not-used advantage/disadvantage dice" />
                     <Bullet msg="Add ads" />
                     <Bullet msg="Select which type of game system a collection uses" />
                     <Bullet msg="Import/export collection files for backup and transfer" />

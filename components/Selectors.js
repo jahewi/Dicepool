@@ -1,9 +1,59 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
 
 
-export function Selector(props) {
+function FaceIcon(props) {
+    let iconname;
+    if (props.advState == 1) {
+        iconname = 'smile';
+    } else if (props.advState == -1) {
+        iconname = 'frown'
+    } else {
+        iconname = 'meh'
+    };
+    return(
+        <FontAwesome5 name={iconname} size={25} />
+    );
+}
+
+
+export function AdvantageSelector(props) {
+    return(
+        <View>
+            <TouchableOpacity
+                onPress={() => {
+                        if (props.advState == 1) {
+                            props.advSetter(0)
+                        } else {
+                            props.advSetter(1)                        
+                        }
+                }}
+            >
+                <Text style={props.advState==1 ? styles.textSelected : ''}>Adv.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => props.advSetter(0)}
+            >
+                <FaceIcon advState={props.advState} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                        if (props.advState == -1) {
+                            props.advSetter(0)
+                        } else {
+                            props.advSetter(-1)                        
+                        }
+                }}
+            >
+                <Text style={props.advState==-1 ? styles.textSelected : ''}>Dis.</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+
+
+export function NumberSelector(props) {
     return(
         <View style={styles.container}>
             <Text style={styles.selectorText}>{props.txt}</Text>
@@ -43,5 +93,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         padding: 3,
+    },
+    textSelected: {
+        fontWeight: 'bold',
     }
 })
