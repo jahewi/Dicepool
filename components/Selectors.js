@@ -5,15 +5,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export function Selector(props) {
     return(
-        <View>
-            <Text>{props.txt}</Text>
+        <View style={styles.container}>
+            <Text style={styles.selectorText}>{props.txt}</Text>
             <View style={styles.selector}>
                 <TouchableOpacity
                     onPress={() => props.selectSetter(props.selectValue-1)}
                 >
                     <MaterialCommunityIcons name='minus' size={25} />
                 </TouchableOpacity>
-                <Text style={styles.selectorText}>{props.selectValue}</Text>
+                <Text style={styles.selectorValueText}>{props.selectValue}</Text>
                 <TouchableOpacity
                     onPress={() => props.selectSetter(props.selectValue+1)}
                 >
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     selectorText: {
+        textAlign: 'center',
+    },
+    selectorValueText: {
         justifyContent: 'center',
         alignContent: 'center',
         padding: 3,
