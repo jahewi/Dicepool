@@ -13,7 +13,7 @@ function FaceIcon(props) {
         iconname = 'meh'
     };
     return(
-        <FontAwesome5 name={iconname} size={25} />
+        <FontAwesome5 name={iconname} size={22} />
     );
 }
 
@@ -32,11 +32,7 @@ export function AdvantageSelector(props) {
             >
                 <Text style={props.advState==1 ? styles.textSelected : ''}>Adv.</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => props.advSetter(0)}
-            >
-                <FaceIcon advState={props.advState} />
-            </TouchableOpacity>
+            <FaceIcon advState={props.advState} />
             <TouchableOpacity
                 onPress={() => {
                         if (props.advState == -1) {
@@ -61,13 +57,13 @@ export function NumberSelector(props) {
                 <TouchableOpacity
                     onPress={() => props.selectSetter(props.selectValue-1)}
                 >
-                    <MaterialCommunityIcons name='minus' size={25} />
+                    <MaterialCommunityIcons name='minus' size={23} />
                 </TouchableOpacity>
                 <Text style={styles.selectorValueText}>{props.selectValue}</Text>
                 <TouchableOpacity
                     onPress={() => props.selectSetter(props.selectValue+1)}
                 >
-                    <MaterialCommunityIcons name='plus' size={25} />
+                    <MaterialCommunityIcons name='plus' size={23} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -96,5 +92,6 @@ const styles = StyleSheet.create({
     },
     textSelected: {
         fontWeight: 'bold',
+        color: 'tomato',
     }
 })

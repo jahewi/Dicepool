@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
       marginHorizontal: 20,
-      marginBottom: 65,
+      marginBottom: 83,
     },
     cCS: {
        flexDirection:'row',
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+        alignItems: 'center',
       }
 });
