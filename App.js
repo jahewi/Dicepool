@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { DiceScreen } from './screens/DiceScreen';
+import { CollectionsScreen } from './screens/CollectionsScreen';
 import { DevScreen } from './screens/DevScreen';
 
 
@@ -21,6 +22,8 @@ export default function App() {
               iconName = focused
                 ? 'dice-d20'
                 : 'dice-d20';
+            } else if (route.name === 'Saved') {
+              iconName = focused ? 'account-box-multiple' : 'account-box-multiple';
             } else if (route.name === 'Dev') {
               iconName = focused ? 'format-list-bulleted' : 'format-list-bulleted';
             }
@@ -35,6 +38,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Dice" component={DiceScreen} />
+        <Tab.Screen name="Saved" component={CollectionsScreen} />
         <Tab.Screen name="Dev" component={DevScreen} />
       </Tab.Navigator>
     </NavigationContainer>

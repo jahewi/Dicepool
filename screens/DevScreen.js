@@ -26,6 +26,12 @@ export function DevScreen() {
                     <Bullet msg="Make pretty" />
                     <Bullet msg="Let user create themes, aka set app colors" />
                 </Text>
+
+                <Text style={styles.header}>Licenses</Text>
+                <Text style={styles.body}>
+                    <Bullet msg="This software is licensed under the GNU General Public License v3.0" />
+                    <Bullet msg="This software uses 'react-native-collapsible', which is licensed under the MIT License" />
+                </Text>
             </ScrollView>
         </SafeAreaView>
     );
