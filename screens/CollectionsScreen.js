@@ -1,69 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
-
-// SUPER slow on phone?!!
-import Accordion from 'react-native-collapsible/Accordion';
+import Collapsible from 'react-native-collapsible';
 
 
-const SECTIONS = [
-    {
-      title: 'Example Character 1',
-      content: 'Attack 1\nAttack 2',
-    },
-    {
-      title: 'Example Chracter 2',
-      content: 'Attack 1\nAttack 2',
-    }
-];
+class CollapsibleSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { collapsed: true };
+  };
+  
+  toggleCollapsed() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  };
 
-class AccordionView extends React.Component {
-    state = {
-        activeSections: [],
-    };
-    
-    _renderHeader = section => {
-        return (
+  render() {
+    return (
+      <View>
+        <TouchableOpacity onPress={() => this.toggleCollapsed()}>
           <View style={styles.header}>
-            <Text style={styles.headerText}>{section.title}</Text>
+            <Text style={styles.headerText}>{this.props.header}</Text>
           </View>
-        );
-    };
-    
-    _renderContent = section => {
-        return (
+        </TouchableOpacity>
+        <Collapsible collapsed={this.state.collapsed} align="center">
           <View style={styles.content}>
-            <Text style={styles.contentText}>{section.content}</Text>
+            <Text>
+              {this.props.content}
+            </Text>
           </View>
-        );
-    };
-    
-    _updateSections = activeSections => {
-        this.setState({ activeSections });
-    };
-    
-    render() {
-        return (
-          <Accordion
-            sections={SECTIONS}
-            activeSections={this.state.activeSections}
-            renderHeader={this._renderHeader}
-            renderContent={this._renderContent}
-            onChange={this._updateSections}
-          />
-        );
-    }
+        </Collapsible>  
+      </View>
+    );
+  };
 }
 
 
-// Currently uses Accordion, which only keeps one section open
-// Switch to Collapsible to be able to keep several open simultaneously
-// see: https://github.com/oblador/react-native-collapsible
-// and  https://aboutreact.com/collapsible-accordion-expandable-view/
 export function CollectionsScreen() {
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                <AccordionView />
+              <CollapsibleSection header="ASPA" content="Here are Aspa's actions!"/>
+              <CollapsibleSection header="THOSMOR" content="Thosmor does sneak attack!"/>
             </ScrollView>
         </SafeAreaView>
     );
