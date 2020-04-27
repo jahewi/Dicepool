@@ -14,10 +14,9 @@ export function DevScreen() {
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
                 <Text style={styles.header}>Upcoming Changes</Text>
-                <Text style={styles.body}>
+                <Text>
                     <Bullet msg="Savable user made roll combinations" />
                     <Bullet msg="User can make collections (characters) that include these roll combinations (actions)" />
-                    <Bullet msg="Advantage / Disadvantage selector" />
                     <Bullet msg="Keep a log of recent rolls" />
                     <Bullet msg="Report not-used advantage/disadvantage dice" />
                     <Bullet msg="Add ads" />
@@ -29,7 +28,7 @@ export function DevScreen() {
                 </Text>
 
                 <Text style={styles.header}>Licenses</Text>
-                <Text style={styles.body}>
+                <Text>
                     <Bullet msg="This software is licensed under the GNU General Public License v3.0" />
                     <Bullet msg="This software uses 'react-native-collapsible', which is licensed under the MIT License" />
                 </Text>
@@ -51,7 +50,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         textDecorationLine: 'underline'
-    },
-    body: {
     }
 });

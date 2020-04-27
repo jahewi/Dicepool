@@ -1,0 +1,21 @@
+Make an attack
+    Check special properties: advantage, to hit / saving throw
+    if ToHit:
+        Roll to hit
+            Roll 1d20
+            if advantage/disadvantage:
+                Roll second 1d20
+            Compare dice
+            if Critical fail or success:
+                Report rolls and MISS or CRIT
+            else (non-crit):
+                Add modifier
+                Report rolls and result
+    else (ST):
+        Report needed save
+    Roll for damage
+        Roll dice
+        if CRIT:
+            Roll dice again
+        Add modifier
+        Report rolls and result

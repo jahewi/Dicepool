@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { RollDice, CompareArrays } from './Functions';
 
 
 function DieIcon(props) {
@@ -30,39 +31,36 @@ function DieIcon(props) {
 }
 
 
-function ThrowDice(props) {
+function HandlePress(props) {
+    // Expects props
+    // * number
+    // * size
+    // * modifier
+    // * advantage
+    // * setRoll
+    // * setSum
     const number = props.number;
     const size = props.size;
-    const modifier = props.modifier;
-    const advantage = props.advantage;
-    let roll = 0;
-    let roll2 = 0;
-    let rolls = [];
-    let result = 0;
-    // Roll the dice
-    for (let index = 0; index < number; index++) {
-        roll = Math.floor(Math.random() * size) + 1;
-        console.log(roll);
-        // Reporting of advantage/disadvantage not-used dice not implemented
-        if (advantage == 1) {
-            roll2 = Math.floor(Math.random() * size) + 1;
-            console.log("Adv die: ", roll2);
-            if (roll2 > roll) {
-                roll = roll2;
-            };
-        } else if (advantage == -1) {
-            roll2 = Math.floor(Math.random() * size) + 1;
-            console.log("Disadv die: ", roll2);
-            if (roll2 < roll) {
-                roll = roll2;
-            };
-        }
-        rolls.push(roll);
-        result += roll;
+    
+    // Roll dice
+    let rolls = RollDice({number, size});
+    // If advantage or disadvantage, roll second set
+    if (props.advantage != 0) {
+        let rolls2 = RollDice({number, size});
+        // Check which dice to keep
+        if (props.advantage == 1) {
+            // Advantage
+            rolls = CompareArrays({arr1: rolls, arr2: rolls2, keep: 'high'});
+        } else {
+            // Disadvantage
+            rolls = CompareArrays({arr1: rolls, arr2: rolls2, keep: 'low'});
+        };
     };
-    // Add the modifier
-    rolls.push(modifier);
-    result += modifier;
+    // Push modifier to roll array
+    rolls.push(props.modifier);
+    // Sum everything up
+    let result = rolls.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
+    // Report results to parent state
     props.setRoll(rolls);
     props.setSum(result);
 }
@@ -73,16 +71,17 @@ export function Die(props) {
     const number = props.diceCount;
     const modifier = props.modifier;
     const advantage = props.advantage;
+    // Parent state setters
     const setRoll = props.setRoll;
     const setSum = props.setSum;
     return(
         <View>
         <TouchableOpacity
-            onPress={() => ThrowDice({size, number, modifier, advantage, setRoll, setSum})}
+            onPress={() => HandlePress({size, number, modifier, advantage, setRoll, setSum})}
             style={styles.container}
         >
             <DieIcon size={size} />
-            <Text style={styles.txt}>Roll d{size}</Text>
+            <Text>Roll d{size}</Text>
         </TouchableOpacity>
         </View>
     );
@@ -103,7 +102,5 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginBottom: 5,
-    },
-    txt: {
     }
 });
