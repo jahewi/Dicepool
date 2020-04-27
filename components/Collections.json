@@ -1,140 +1,144 @@
 {
-    "COLLECTION1": {
-        "CollectionName": "Aspa",
-        "Actions": [
-            {
-                "key": 1,
-                "ActionName": "Crossbow, Light",
-                "HitModifier": 4,
-                "NumberOfDice": [1],
-                "SizeOfDice": [8],
-                "DamageModifier": 2
-            },
-            {
-                "key": 2,
-                "ActionName": "Dagger 1",
-                "HitModifier": 4,
-                "NumberOfDice": [1],
-                "SizeOfDice": [4],
-                "DamageModifier": 2
-            },
-            {
-                "key": 3,
-                "ActionName": "Dagger 2",
-                "HitModifier": 4,
-                "NumberOfDice": [1],
-                "SizeOfDice": [4],
-                "DamageModifier": 0
-            },
-            {
-                "key": 4,
-                "ActionName": "Ray of Frost",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [8],
-                "DamageModifier": 0
-            },
-            {
-                "key": 5,
-                "ActionName": "Shocking Grasp",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [8],
-                "DamageModifier": 0
-            },
-            {
-                "key": 6,
-                "ActionName": "Chromatic Orb",
-                "HitModifier": 5,
-                "NumberOfDice": [3],
-                "SizeOfDice": [8],
-                "DamageModifier": 0
-            },
-            {
-                "key": 7,
-                "ActionName": "Chromatic Orb (2nd)",
-                "HitModifier": 5,
-                "NumberOfDice": [4],
-                "SizeOfDice": [8],
-                "DamageModifier": 0
-            },
-            {
-                "key": 8,
-                "ActionName": "Earthen Grasp",
-                "HitModifier": "STR 13",
-                "NumberOfDice": [2],
-                "SizeOfDice": [6],
-                "DamageModifier": 0
-            },
-            {
-                "key": 9,
-                "ActionName": "Unarmed",
-                "HitModifier": 1,
-                "NumberOfDice": [0],
-                "SizeOfDice": [0],
-                "DamageModifier": 0
-            }
-        ]
-    },
-    "COLLECTION2": {
-        "CollectionName": "Thosmor",
-        "Actions": [
-            {
-                "key": 1,
-                "ActionName": "Sneak Attack",
-                "HitModifier": 0,
-                "NumberOfDice": [2],
-                "SizeOfDice": [6],
-                "DamageModifier": 0
-            },
-            {
-                "key": 2,
-                "ActionName": "Shortsword 1",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [6],
-                "DamageModifier": 3
-            },
-            {
-                "key": 3,
-                "ActionName": "Shortsword 2",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [6],
-                "DamageModifier": 0
-            },
-            {
-                "key": 4,
-                "ActionName": "Shortbow",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [6],
-                "DamageModifier": 3
-            },
-            {
-                "key": 5,
-                "ActionName": "Dagger 1",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [4],
-                "DamageModifier": 3
-            },
-            {
-                "key": 6,
-                "ActionName": "Dagger 2",
-                "HitModifier": 5,
-                "NumberOfDice": [1],
-                "SizeOfDice": [4],
-                "DamageModifier": 0
-            },
-            {
-                "key": 7,
-                "ActionName": "Unarmed",
-                "HitModifier": 3,
-                "NumberOfDice": [0],
-                "SizeOfDice": [0],
-                "DamageModifier": 2
-            }
-        ]
-    }
+    "Collections": [
+        {
+            "key": "C1",
+            "CollectionName": "Aspa",
+            "Actions": [
+                {
+                    "key": 1,
+                    "ActionName": "Crossbow, Light",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 2,
+                    "ActionName": "Dagger 1",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 3,
+                    "ActionName": "Dagger 2",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 4,
+                    "ActionName": "Ray of Frost",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 5,
+                    "ActionName": "Shocking Grasp",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 6,
+                    "ActionName": "Chromatic Orb",
+                    "HitModifier": 5,
+                    "NumberOfDice": [3],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 7,
+                    "ActionName": "Chromatic Orb (2nd)",
+                    "HitModifier": 5,
+                    "NumberOfDice": [4],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 8,
+                    "ActionName": "Earthen Grasp",
+                    "HitModifier": "STR 13",
+                    "NumberOfDice": [2],
+                    "SizeOfDice": [6],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 9,
+                    "ActionName": "Unarmed",
+                    "HitModifier": 1,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 0
+                }
+            ]
+        },
+        {
+            "key": "C2",
+            "CollectionName": "Thosmor",
+            "Actions": [
+                {
+                    "key": 1,
+                    "ActionName": "Sneak Attack",
+                    "HitModifier": 0,
+                    "NumberOfDice": [2],
+                    "SizeOfDice": [6],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 2,
+                    "ActionName": "Shortsword 1",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [6],
+                    "DamageModifier": 3
+                },
+                {
+                    "key": 3,
+                    "ActionName": "Shortsword 2",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [6],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 4,
+                    "ActionName": "Shortbow",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [6],
+                    "DamageModifier": 3
+                },
+                {
+                    "key": 5,
+                    "ActionName": "Dagger 1",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 3
+                },
+                {
+                    "key": 6,
+                    "ActionName": "Dagger 2",
+                    "HitModifier": 5,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 7,
+                    "ActionName": "Unarmed",
+                    "HitModifier": 3,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 2
+                }
+            ]
+        }
+    ]
 }

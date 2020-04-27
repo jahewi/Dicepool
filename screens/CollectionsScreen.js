@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import AsyncStorage from '@react-native-community/async-storage';
-import * as Collections from '../components/Collections.json';
+import * as data from '../components/Collections.json';
 
 
 class ActionButton extends React.Component {
@@ -29,7 +29,7 @@ class ActionList extends React.Component {
 }
 
 
-class CollapsibleSection extends React.Component {
+class CollectionSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,8 +66,9 @@ export function CollectionsScreen() {
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-              <CollapsibleSection collection={Collections.COLLECTION1} />
-              <CollapsibleSection collection={Collections.COLLECTION2} />
+              {data.Collections.map(collection => {
+                return <CollectionSection key={collection.key} collection={collection}/>
+              })}
             </ScrollView>
         </SafeAreaView>
     );
