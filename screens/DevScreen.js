@@ -31,6 +31,7 @@ export function DevScreen() {
                 <Text>
                     <Bullet msg="This software is licensed under the GNU General Public License v3.0" />
                     <Bullet msg="This software uses 'react-native-collapsible', which is licensed under the MIT License" />
+                    <Bullet msg="This software uses 'react-native-community/async-storage', which is licensed under the MIT License" />
                 </Text>
             </ScrollView>
         </SafeAreaView>
