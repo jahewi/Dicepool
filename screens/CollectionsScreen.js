@@ -1,16 +1,134 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import { AdvantageSelector } from '../components/Selectors';
+import { Reporter } from '../components/Reporter';
+import { RollDice, CompareArrays } from '../components/Functions';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as data from '../components/Collections.json';
 
 
+function handlePress(props) {
+  // Report name of action
+  props.setActName(props.actionName)
+
+  const advantage = props.advantage;
+  const hitMod = props.hitMod;
+  const numOfDice = props.numOfDice;
+  const sizeOfDice = props.sizeOfDice;
+  const dmgMod = props.dmgMod;
+  
+  const setHitRoll = props.setHitRoll;
+  const setHitSum = props.setHitSum;
+  const setDmgRoll = props.setDmgRoll;
+  const setDmgSum = props.setDmgSum;
+
+  let crit = 0; // 1 if crit success, -1 if crit fail
+
+  // Roll to hit or Saving Throw?
+  if (typeof(hitMod)=='number') {
+    // To hit
+    console.log("To hit");
+    let rolls = RollDice({number: 1, size: 20});
+    console.log(rolls);
+    // Advantage/disadvantage?
+    if (advantage != 0) {
+      let rolls2 = RollDice({number: 1, size: 20});
+      // Check which dice to keep
+      if (advantage == 1) {
+          // Advantage
+          rolls = CompareArrays({arr1: rolls, arr2: rolls2, keep: 'high'});
+      } else {
+          // Disadvantage
+          rolls = CompareArrays({arr1: rolls, arr2: rolls2, keep: 'low'});
+      };
+    };
+    // Push modifier to roll array
+    rolls.push(hitMod);
+    let hitTotal = 0;
+    // Critical hit
+    if (rolls[0]==20) {
+      crit = 1;
+      hitTotal = "CRIT";
+    // Critical miss
+    } else if (rolls[0]==1) {
+      crit = -1;
+      hitTotal = "MISS";
+    // Non-critical
+    } else {
+      // Sum everything up
+      hitTotal = rolls.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
+    };
+    // Report results to parent state
+    setHitRoll(rolls);
+    setHitSum(hitTotal);
+  } else {
+    // Saving Throw
+    console.log("ST");
+    // Parse string of format "WIS 13"
+    let ST = hitMod.split(" ");
+    setHitRoll(ST[0] + " ST");
+    setHitSum(ST[1]);
+  };
+
+  // Roll for damage, ONLY if not a Critical Miss
+  let rolls = [];
+  let dmgTotal = 0;
+  console.log("Damage");
+  if (crit==-1) {
+    // Critical Miss
+    rolls = "-";
+    dmgTotal = 0;
+  } else {
+    rolls = RollDice({number: numOfDice, size: sizeOfDice});
+    console.log(rolls);
+    // If Critical Hit
+    if (crit==1) {
+      let rolls2 = RollDice({number: numOfDice, size: sizeOfDice});
+      dmgTotal += rolls2.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
+      console.log(rolls2);
+      rolls = rolls.concat(rolls2);
+      console.log(rolls);
+    };
+    // Add modifier
+    rolls.push(dmgMod);
+    // Sum everything up
+    dmgTotal += rolls.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
+  };
+  // Report results to parent state
+  setDmgRoll(rolls);
+  setDmgSum(dmgTotal);
+}
+
+
 class ActionButton extends React.Component {
+
   render() {
+    const advantage = this.props.advantage;
+    // Get data for action
+    const action = this.props.action;
+    const actionName = action.ActionName; // str
+    const hitMod = action.HitModifier; // num or str
+    const numOfDice = action.NumberOfDice; // array
+    const sizeOfDice = action.SizeOfDice; // array
+    const dmgMod = action.DamageModifier; // num
+    // State setters
+    const setActName = this.props.setActName;
+    const setHitRoll = this.props.setHitRoll;
+    const setHitSum = this.props.setHitSum;
+    const setDmgRoll = this.props.setDmgRoll;
+    const setDmgSum = this.props.setDmgSum;
+  
     return(
-      <Text>
-        {this.props.action.ActionName}
-      </Text>
+      <TouchableOpacity
+        onPress={() => handlePress({
+                        actionName, setActName,
+                        advantage, hitMod, setHitRoll, setHitSum,
+                        numOfDice, sizeOfDice, dmgMod, setDmgRoll, setDmgSum,
+                      })}
+      >
+        <Text>{this.props.action.ActionName}</Text>
+      </TouchableOpacity>
     );
   };
 }
@@ -18,10 +136,25 @@ class ActionButton extends React.Component {
 
 class ActionList extends React.Component {
   render() {
+    const advantage = this.props.advantage;
+    const setActName = this.props.setActName;
+    const setHitRoll = this.props.setHitRoll;
+    const setHitSum = this.props.setHitSum;
+    const setDmgRoll = this.props.setDmgRoll;
+    const setDmgSum = this.props.setDmgSum;
     return(
       <View style={styles.content}>
         {this.props.actions.map(action => {
-          return <ActionButton key={action.key} action={action}/>
+          return <ActionButton
+                    key={action.key}
+                    action={action}
+                    advantage={advantage}
+                    setActName={setActName}
+                    setHitRoll={setHitRoll}
+                    setHitSum={setHitSum}
+                    setDmgRoll={setDmgRoll}
+                    setDmgSum={setDmgSum}
+                  />
         })}
       </View>
     );
@@ -45,7 +178,13 @@ class CollectionSection extends React.Component {
 
   render() {
     const header = this.props.collection.CollectionName;
-    const actions = this.props.collection.Actions;    
+    const actions = this.props.collection.Actions;
+    const advantage = this.props.advantage;
+    const setActName = this.props.setActName;
+    const setHitRoll = this.props.setHitRoll;
+    const setHitSum = this.props.setHitSum;
+    const setDmgRoll = this.props.setDmgRoll;
+    const setDmgSum = this.props.setDmgSum;
     return (
       <View>
         <TouchableOpacity onPress={() => this.toggleCollapsed()}>
@@ -54,7 +193,15 @@ class CollectionSection extends React.Component {
           </View>
         </TouchableOpacity>
         <Collapsible collapsed={this.state.collapsed} align="center">
-          <ActionList actions={actions} />
+          <ActionList
+            actions={actions}
+            advantage={advantage}
+            setActName={setActName}
+            setHitRoll={setHitRoll}
+            setHitSum={setHitSum}
+            setDmgRoll={setDmgRoll}
+            setDmgSum={setDmgSum}
+          />
         </Collapsible>  
       </View>
     );
@@ -63,15 +210,37 @@ class CollectionSection extends React.Component {
 
 
 export function CollectionsScreen() {
-    return(
-        <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              {data.Collections.map(collection => {
-                return <CollectionSection key={collection.key} collection={collection}/>
-              })}
-            </ScrollView>
-        </SafeAreaView>
-    );
+  const [advantage, setAdvantage] = useState(0);
+  const [actName, setActName] = useState("");
+  const [hitRoll, setHitRoll] = useState([]);
+  const [hitSum, setHitSum] = useState(0);
+  const [dmgRoll, setDmgRoll] = useState([]);
+  const [dmgSum, setDmgSum] = useState(0);
+
+  return(
+    <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          {data.Collections.map(collection => {
+            return <CollectionSection
+                      key={collection.key}
+                      collection={collection}
+                      advantage={advantage}
+                      setActName={setActName}
+                      setHitRoll={setHitRoll}
+                      setHitSum={setHitSum}
+                      setDmgRoll={setDmgRoll}
+                      setDmgSum={setDmgSum}
+                    />
+          })}
+        </ScrollView>
+        <View style={styles.selectorContainer}>
+            <AdvantageSelector advState={advantage} advSetter={setAdvantage} />
+            <Text>{actName}</Text>
+            <Reporter title="To hit" sum={hitSum} roll={hitRoll}/>
+            <Reporter title="Damage" sum={dmgSum} roll={dmgRoll}/>
+        </View>
+    </SafeAreaView>
+  );
 }
 
 
@@ -101,5 +270,17 @@ const styles = StyleSheet.create({
     },
     contentText: {
         fontSize: 18,
+    },
+    selectorContainer: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: '#fbfbfb',
+      paddingVertical: 10,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
     }
 });

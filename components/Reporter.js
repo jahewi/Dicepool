@@ -18,6 +18,12 @@ function PrintSum(props) {
 // ToDo: Print only a max amount of numbers
 // Maybe sort them and report highest and lowest few
 function PrintArray(props) {
+    // If reporting saving throw (or other string)
+    if (typeof(props.roll)=='string') {
+        return(
+            <Text style={styles.selectorValueText}>{props.roll}</Text>
+        );
+    }
     // If roll array empty
     if (props.roll.length == 0) {
         return(
@@ -44,15 +50,22 @@ function PrintArray(props) {
 
 export function Reporter(props) {    
     return(
-        <View style={styles.container}>
-            <PrintSum num={props.sum}/>
-            <PrintArray roll={props.roll}/>
+        <View>
+            <Text style={styles.title}>{props.title}</Text>
+            <View style={styles.container}>
+                <PrintSum num={props.sum}/>
+                <PrintArray roll={props.roll}/>
+            </View>
         </View>
     );
 }
 
 
 const styles = StyleSheet.create({
+    title: {
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
     container: {
         justifyContent: 'center',
         alignContent: 'center',
