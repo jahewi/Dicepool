@@ -105,7 +105,6 @@ function handlePress(props) {
 
 
 class ActionButton extends React.Component {
-
   render() {
     const advantage = this.props.advantage;
     // Get data for action
@@ -123,6 +122,34 @@ class ActionButton extends React.Component {
     const setDmgRoll = this.props.setDmgRoll;
     const setDmgSum = this.props.setDmgSum;
   
+    // Build strings to display on button
+    let hitModTxt = "";
+    if (hitMod==0) {
+      hitModTxt = "±" + hitMod + ", ";
+    } else if (hitMod > 0) {
+      hitModTxt = "+" + hitMod + ", ";
+    } else {
+      hitModTxt = hitMod + ", ";
+    };
+    let diceTxt = "";
+    let dmgModTxt ="";
+    const dice = (numOfDice!=0 && sizeOfDice!=0); // Does action use dice?
+    if (!dice) {
+      // No dice
+      dmgModTxt = dmgMod;
+    } else {
+      // Dice are used
+      diceTxt = numOfDice + "d" + sizeOfDice;
+      if (dmgMod != 0) {
+        // Damage modifier
+        if (dmgMod > 0) {
+          dmgModTxt = "+" + dmgMod;
+        } else {
+          dmgModTxt = dmgMod;
+        };
+      };
+    };
+
     return(
       <TouchableOpacity
         onPress={() => handlePress({
@@ -131,7 +158,7 @@ class ActionButton extends React.Component {
                         numOfDice, sizeOfDice, dmgMod, setDmgRoll, setDmgSum,
                       })}
       >
-        <Text>{this.props.action.ActionName}</Text>
+        <Text>{this.props.action.ActionName} ({hitModTxt}{diceTxt}{dmgModTxt})</Text>
       </TouchableOpacity>
     );
   };

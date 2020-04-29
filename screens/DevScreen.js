@@ -15,7 +15,6 @@ export function DevScreen() {
             <ScrollView style={styles.scrollView}>
                 <Text style={styles.header}>Upcoming Changes</Text>
                 <Text>
-                    <Bullet msg="Reset advantage state on roll." />
                     <Bullet msg="Hightlight result box border when in an adv. state." />
                     <Bullet msg="Savable user made roll combinations" />
                     <Bullet msg="User can make collections (characters) that include these roll combinations (actions)" />

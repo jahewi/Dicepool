@@ -1,6 +1,124 @@
 {
     "Collections": [
         {
+            "key": "C0",
+            "CollectionName": "TESTER",
+            "Actions": [
+                {
+                    "key": 1,
+                    "ActionName": "Hit, dice, mod",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 2,
+                    "ActionName": "Hit, dice",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 3,
+                    "ActionName": "Hit, mod #1",
+                    "HitModifier": 4,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [4],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 4,
+                    "ActionName": "Hit, mod #2",
+                    "HitModifier": 4,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 5,
+                    "ActionName": "Hit, mod #3",
+                    "HitModifier": 4,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 6,
+                    "ActionName": "Hit",
+                    "HitModifier": 5,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 7,
+                    "ActionName": "Dice, mod",
+                    "HitModifier": 0,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 8,
+                    "ActionName": "Dice",
+                    "HitModifier": 0,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 9,
+                    "ActionName": "Mod",
+                    "HitModifier": 0,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 10,
+                    "ActionName": "-",
+                    "HitModifier": 0,
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 11,
+                    "ActionName": "Negative",
+                    "HitModifier": -1,
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": -2
+                },
+                {
+                    "key": 12,
+                    "ActionName": "ST, dice, mod",
+                    "HitModifier": "WIS 12",
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 2
+                },
+                {
+                    "key": 13,
+                    "ActionName": "ST, dice",
+                    "HitModifier": "WIS 12",
+                    "NumberOfDice": [1],
+                    "SizeOfDice": [8],
+                    "DamageModifier": 0
+                },
+                {
+                    "key": 14,
+                    "ActionName": "ST, mod",
+                    "HitModifier": "WIS 12",
+                    "NumberOfDice": [0],
+                    "SizeOfDice": [0],
+                    "DamageModifier": -2
+                }
+            ]
+        },
+        {
             "key": "C1",
             "CollectionName": "Aspa",
             "Actions": [
