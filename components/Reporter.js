@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 
 function PrintSum(props) {
-    if (props.num == 0) {
+    if (props.num == null) {
         return(
             <Text style={styles.selectorText}>-</Text>
         );
@@ -23,13 +23,20 @@ function PrintArray(props) {
         return(
             <Text style={styles.selectorValueText}>{props.roll}</Text>
         );
-    }
+    };
     // If roll array empty
     if (props.roll.length == 0) {
         return(
             <Text style={styles.selectorValueText}>&nbsp;</Text>
         );
-    }
+    };
+    // If roll array only contains modifier
+    if (props.roll.length == 1) {
+        return(
+        <Text style={styles.selectorValueText}>{props.roll[0]}</Text>
+        );
+    };
+    // Else array contains both die rolls and modifier
     let str = '[';
     const rolls = props.roll.slice();
     const modifier = rolls.pop();

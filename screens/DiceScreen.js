@@ -19,7 +19,7 @@ export function DiceScreen() {
     const [modifier, setModifier] = useState(0);
     const [advantage, setAdvantage] = useState(0);
     const [previousRoll, setPreviousRoll] = useState([]);
-    const [previousSum, setPreviousSum] = useState(0);
+    const [previousSum, setPreviousSum] = useState(null);
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView} contentContainerStyle={styles.cCS}>

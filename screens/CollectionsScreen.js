@@ -213,9 +213,9 @@ export function CollectionsScreen() {
   const [advantage, setAdvantage] = useState(0);
   const [actName, setActName] = useState("");
   const [hitRoll, setHitRoll] = useState([]);
-  const [hitSum, setHitSum] = useState(0);
+  const [hitSum, setHitSum] = useState(null);
   const [dmgRoll, setDmgRoll] = useState([]);
-  const [dmgSum, setDmgSum] = useState(0);
+  const [dmgSum, setDmgSum] = useState(null);
 
   return(
     <SafeAreaView style={styles.container}>
