@@ -5,15 +5,6 @@ import { NumberSelector, AdvantageSelector } from '../components/Selectors';
 import { Reporter } from '../components/Reporter';
 
 
-function AddDice(props) {
-    let tempSum = 0;
-    roll.forEach(die => {
-        tempSum += die;
-    });
-    setSum(tempSum);    
-};
-
-
 export function DiceScreen() {
     const [diceCount, setDiceCount] = useState(1);
     const [modifier, setModifier] = useState(0);
