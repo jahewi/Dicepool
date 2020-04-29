@@ -60,6 +60,8 @@ function HandlePress(props) {
     rolls.push(props.modifier);
     // Sum everything up
     let result = rolls.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
+    // Reset advantage
+    props.setAdvantage(0);
     // Report results to parent state
     props.setRoll(rolls);
     props.setSum(result);
@@ -72,12 +74,13 @@ export function Die(props) {
     const modifier = props.modifier;
     const advantage = props.advantage;
     // Parent state setters
+    const setAdvantage = props.setAdvantage;
     const setRoll = props.setRoll;
     const setSum = props.setSum;
     return(
         <View>
         <TouchableOpacity
-            onPress={() => HandlePress({size, number, modifier, advantage, setRoll, setSum})}
+            onPress={() => HandlePress({size, number, modifier, advantage, setAdvantage, setRoll, setSum})}
             style={styles.container}
         >
             <DieIcon size={size} />

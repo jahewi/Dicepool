@@ -23,16 +23,16 @@ export function DiceScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView} contentContainerStyle={styles.cCS}>
-                <Die size={100} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={20} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={12} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={10} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={8} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={6} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={4} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
-                <Die size={2} diceCount={diceCount} modifier={modifier} advantage={advantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={100} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={20} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={12} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={10} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={8} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={6} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={4} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                <Die size={2} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
             </ScrollView>
-            <View style={styles.selectorContainer}>
+            <View style={[styles.selectorContainer, (advantage!=0) ? styles.containerAdvantage : null]}>
                 <NumberSelector txt={"#Dice:"} selectValue={diceCount} selectSetter={setDiceCount}/>
                 <NumberSelector txt={"Modifier:"} selectValue={modifier} selectSetter={setModifier}/>
                 <AdvantageSelector advState={advantage} advSetter={setAdvantage} />
@@ -68,5 +68,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-      }
+    },
+    containerAdvantage: {
+        borderTopColor: 'tomato',
+        borderTopWidth: 3,
+    }
 });

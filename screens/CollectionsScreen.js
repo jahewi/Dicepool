@@ -18,6 +18,7 @@ function handlePress(props) {
   const sizeOfDice = props.sizeOfDice;
   const dmgMod = props.dmgMod;
   
+  const setAdvantage = props.setAdvantage;
   const setHitRoll = props.setHitRoll;
   const setHitSum = props.setHitSum;
   const setDmgRoll = props.setDmgRoll;
@@ -95,6 +96,8 @@ function handlePress(props) {
     // Sum everything up
     dmgTotal += rolls.reduce( function(cumulative, individual){ return cumulative + individual; }, 0);
   };
+  // Reset advantage
+  setAdvantage(0);
   // Report results to parent state
   setDmgRoll(rolls);
   setDmgSum(dmgTotal);
@@ -113,6 +116,7 @@ class ActionButton extends React.Component {
     const sizeOfDice = action.SizeOfDice; // array
     const dmgMod = action.DamageModifier; // num
     // State setters
+    const setAdvantage = this.props.setAdvantage;
     const setActName = this.props.setActName;
     const setHitRoll = this.props.setHitRoll;
     const setHitSum = this.props.setHitSum;
@@ -123,7 +127,7 @@ class ActionButton extends React.Component {
       <TouchableOpacity
         onPress={() => handlePress({
                         actionName, setActName,
-                        advantage, hitMod, setHitRoll, setHitSum,
+                        advantage, setAdvantage, hitMod, setHitRoll, setHitSum,
                         numOfDice, sizeOfDice, dmgMod, setDmgRoll, setDmgSum,
                       })}
       >
@@ -137,6 +141,7 @@ class ActionButton extends React.Component {
 class ActionList extends React.Component {
   render() {
     const advantage = this.props.advantage;
+    const setAdvantage = this.props.setAdvantage;
     const setActName = this.props.setActName;
     const setHitRoll = this.props.setHitRoll;
     const setHitSum = this.props.setHitSum;
@@ -149,6 +154,7 @@ class ActionList extends React.Component {
                     key={action.key}
                     action={action}
                     advantage={advantage}
+                    setAdvantage={setAdvantage}
                     setActName={setActName}
                     setHitRoll={setHitRoll}
                     setHitSum={setHitSum}
@@ -180,6 +186,7 @@ class CollectionSection extends React.Component {
     const header = this.props.collection.CollectionName;
     const actions = this.props.collection.Actions;
     const advantage = this.props.advantage;
+    const setAdvantage = this.props.setAdvantage;
     const setActName = this.props.setActName;
     const setHitRoll = this.props.setHitRoll;
     const setHitSum = this.props.setHitSum;
@@ -196,6 +203,7 @@ class CollectionSection extends React.Component {
           <ActionList
             actions={actions}
             advantage={advantage}
+            setAdvantage={setAdvantage}
             setActName={setActName}
             setHitRoll={setHitRoll}
             setHitSum={setHitSum}
@@ -225,6 +233,7 @@ export function CollectionsScreen() {
                       key={collection.key}
                       collection={collection}
                       advantage={advantage}
+                      setAdvantage={setAdvantage}
                       setActName={setActName}
                       setHitRoll={setHitRoll}
                       setHitSum={setHitSum}
@@ -233,7 +242,7 @@ export function CollectionsScreen() {
                     />
           })}
         </ScrollView>
-        <View style={styles.selectorContainer}>
+        <View style={[styles.selectorContainer, (advantage!=0) ? styles.containerAdvantage : null]}>
             <AdvantageSelector advState={advantage} advSetter={setAdvantage} />
             <Text>{actName}</Text>
             <Reporter title="To hit" sum={hitSum} roll={hitRoll}/>
@@ -282,5 +291,9 @@ const styles = StyleSheet.create({
       flexWrap: 'wrap',
       justifyContent: 'space-evenly',
       alignItems: 'center',
+    },
+    containerAdvantage: {
+        borderTopColor: 'tomato',
+        borderTopWidth: 3,
     }
 });
