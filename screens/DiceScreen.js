@@ -3,6 +3,7 @@ import { StyleSheet, View, SafeAreaView, ScrollView } from 'react-native';
 import { Die } from '../components/Dice';
 import { NumberSelector, AdvantageSelector } from '../components/Selectors';
 import { Reporter } from '../components/Reporter';
+import * as data from '../components/UserDice.json';
 
 
 export function DiceScreen() {
@@ -22,6 +23,10 @@ export function DiceScreen() {
                 <Die size={6} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
                 <Die size={4} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
                 <Die size={2} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                {/* Load user saved dice */}
+                {data.UserDice.map(die => {
+                    return <Die key={die.key} size={die.sides} diceCount={diceCount} modifier={modifier} advantage={advantage} setAdvantage={setAdvantage} setRoll={setPreviousRoll} setSum={setPreviousSum} />
+                })}
             </ScrollView>
             <View style={[styles.selectorContainer, (advantage!=0) ? styles.containerAdvantage : null]}>
                 <NumberSelector txt={"#Dice:"} selectValue={diceCount} selectSetter={setDiceCount}/>

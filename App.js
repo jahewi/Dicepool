@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { DiceScreen } from './screens/DiceScreen';
 import { CollectionsScreen } from './screens/CollectionsScreen';
+import { NewDieScreen } from './screens/NewDieScreen';
 import { DevScreen } from './screens/DevScreen';
 
 
@@ -23,11 +24,12 @@ export default function App() {
                 ? 'dice-d20'
                 : 'dice-d20';
             } else if (route.name === 'Saved') {
-              iconName = focused ? 'account-box-multiple' : 'account-box-multiple';
+              iconName = 'account-box-multiple';
             } else if (route.name === 'Dev') {
-              iconName = focused ? 'format-list-bulleted' : 'format-list-bulleted';
+              iconName = 'format-list-bulleted';
+            } else if (route.name === 'Add') {
+              iconName = 'plus-circle-outline';
             }
-
             // You can return any component that you like here!
             return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           },
@@ -39,6 +41,7 @@ export default function App() {
       >
         <Tab.Screen name="Dice" component={DiceScreen} />
         <Tab.Screen name="Saved" component={CollectionsScreen} />
+        <Tab.Screen name="Add" component={NewDieScreen} />
         <Tab.Screen name="Dev" component={DevScreen} />
       </Tab.Navigator>
     </NavigationContainer>
